@@ -16,6 +16,10 @@ class ShapeLookupTable(IntEnum):
     Y = Shape.PAPER
     Z = Shape.SCISSORS
 
+    @property
+    def shape(self):
+        return Shape(self.value)
+
 
 TOURNAMENT_RULES = {
     Shape.ROCK: (Shape.SCISSORS, Shape.PAPER),
@@ -25,7 +29,7 @@ TOURNAMENT_RULES = {
 
 
 def compact_list(input: List[str]) -> List[Tuple[Shape, Shape]]:
-    return [(ShapeLookupTable[a], ShapeLookupTable[b]) for a, b in [p.split() for p in input]]
+    return [(ShapeLookupTable[a].shape, ShapeLookupTable[b].shape) for a, b in [p.split() for p in input]]
 
 
 def compute_score(opponent: Shape, player: Shape, manipulate: bool = False) -> int:

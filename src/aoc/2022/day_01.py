@@ -1,8 +1,8 @@
 from itertools import groupby
-from typing import List, Tuple
+from typing import List
 
 
-def compact_list(input: List[str], *, sep: str) -> List[Tuple[int]]:
+def compact_list(input: List[str], *, sep: str) -> List[int]:
     return [sum(map(int, g)) for k, g in groupby(input, lambda s: s == sep) if not k]
 
 
