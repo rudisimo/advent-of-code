@@ -1,8 +1,10 @@
 # Advent of Code
 
-[Advent of Code](https://adventofcode.com/2022/) is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
+[![Python Package](https://github.com/rudisimo/advent-of-code/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/rudisimo/advent-of-code/actions/workflows/build.yaml)
 
-This project will contain all of my *attempts* at finishing the Advent of Code calendar each year.
+[Advent of Code](https://adventofcode.com/) is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
+
+This project *WILL* contain all of my attempts at finishing the Advent of Code calendar each year.
 
 ## Quickstart
 
