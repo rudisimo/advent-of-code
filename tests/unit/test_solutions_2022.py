@@ -1,20 +1,23 @@
 from itertools import product
-from typing import List
+from typing import Iterator, List
 
 import pytest
 
+from _pytest.mark import ParameterSet
 
-@pytest.mark.parametrize(
-    "day,part,fixtures",
-    [
-        pytest.param(day, part, ["example", "input"], id=f"{day}-{part}")
-        for day, part in product(range(1, 26), range(1, 3))
-    ],
-)
-def test_should_solve_puzzles(day: int, part: int, fixtures: List[str], load_fixtures, solve_puzzle) -> None:
-    try:
-        loaded_fixtures = load_fixtures(year=2022, day=day, part=part, fixtures=fixtures)
-        for (input_data, expected_output) in loaded_fixtures:
-            assert solve_puzzle(year=2022, day=day, part=part, data=input_data) == expected_output
-    except (FileNotFoundError, NotImplementedError) as e:
-        pytest.skip(f"Reason: [{type(e).__name__}] {e}")
+
+FIXTURE_YEAR = 2022
+FIXTURE_DATES = product(range(1, 26), range(1, 3))
+FIXTURE_NAMES = ["example", "input"]
+
+
+def parametrize_fixtures(year, dates, fixtures) -> Iterator[ParameterSet]:
+    return [pytest.param(year, day, part, fixtures, id=f"{year}-{day:02}-{part}") for day, part in dates]
+
+
+@pytest.mark.year(FIXTURE_YEAR)
+@pytest.mark.parametrize("year,day,part,fixtures", parametrize_fixtures(FIXTURE_YEAR, FIXTURE_DATES, FIXTURE_NAMES))
+def test_solve_puzzle_answers(year: int, day: int, part: int, fixtures: List[str], load_fixtures, solve_puzzle) -> None:
+    fixture_data, expected_output = next(load_fixtures(year, day, part, fixtures))
+    output = solve_puzzle(year, day, part, fixture_data)
+    assert output == expected_output
