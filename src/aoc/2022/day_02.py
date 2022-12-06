@@ -28,7 +28,15 @@ def compact_list(input: List[str]) -> List[Tuple[Shape, Shape]]:
     return [(ShapeLookupTable[a], ShapeLookupTable[b]) for a, b in [p.split() for p in input]]
 
 
-def compute_score(opponent: Shape, player: Shape) -> int:
+def compute_score(opponent: Shape, player: Shape, manipulate: bool = False) -> int:
+    if manipulate:
+        if player == Shape.ROCK:  # PLAYER MUST LOSE
+            player = TOURNAMENT_RULES[opponent][0]
+        elif player == Shape.PAPER:  # PLAYER MUST DRAW
+            player = opponent
+        elif player == Shape.SCISSORS:  # PLAYER MUST WIN
+            player = TOURNAMENT_RULES[opponent][1]
+
     if player == TOURNAMENT_RULES[opponent][0]:
         return player.value
     elif player == opponent:
@@ -37,23 +45,13 @@ def compute_score(opponent: Shape, player: Shape) -> int:
         return player.value + 6
 
 
-def manipulate_game(opponent: Shape, player: Shape) -> Tuple[Shape, Shape]:
-    if player == Shape.ROCK:  # MUST LOSE
-        return opponent, TOURNAMENT_RULES[opponent][0]
-    elif player == Shape.PAPER:  # MUST DRAW
-        return opponent, opponent
-    elif player == Shape.SCISSORS:  # MUST WIN
-        return opponent, TOURNAMENT_RULES[opponent][1]
-
-
 def answer_1(input: List[str]) -> int:
     normalized_list = compact_list(input)
-    scored_list = [compute_score(o, p) for o, p in normalized_list]
+    scored_list = [compute_score(o, p, manipulate=False) for o, p in normalized_list]
     return sum(scored_list)
 
 
 def answer_2(input: List[str]) -> int:
     normalized_list = compact_list(input)
-    manipulated_list = [manipulate_game(o, p) for o, p in normalized_list]
-    scored_list = [compute_score(o, p) for o, p in manipulated_list]
+    scored_list = [compute_score(o, p, manipulate=True) for o, p in normalized_list]
     return sum(scored_list)
