@@ -25,9 +25,9 @@ jobs:
 
       - name: Run linting
         run: |
-          flake8 .
+          python -m flake8 -v --config .flake8 --black-config pyproject.toml --show-source
         continue-on-error: true
 
       - name: Run tests
         run: |
-          pytest -vvv --cov --cov-context=test --cov-report=xml --cov-report=html
+          python -m pytest -vvv --cov --cov-context=test --cov-report=xml --cov-report=html
