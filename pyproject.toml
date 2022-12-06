@@ -9,7 +9,7 @@ lines_between_types = 1
 lines_after_imports = 2
 combine_as_imports = true
 force_single_line = true
-known_first_party = ["aoc"]
+known_first_party = ["aoc", "tests"]
 single_line_exclusions = ["typing"]
 
 [tool.black]
@@ -63,3 +63,7 @@ exclude_lines = []
 
 [tool.coverage.html]
 show_contexts = true
+
+[tool.pyright]
+include = ["src"]
+ignore = ["setup.py", "tests/*"]
