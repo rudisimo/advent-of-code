@@ -29,12 +29,12 @@ def compact_list(input: List[str]) -> List[Tuple[Shape, Shape]]:
 
 
 def compute_score(opponent: Shape, player: Shape) -> int:
-    if opponent == TOURNAMENT_RULES[player][0]:
-        return player.value + 6
-    elif opponent == player:
+    if player == TOURNAMENT_RULES[opponent][0]:
+        return player.value
+    elif player == opponent:
         return player.value + 3
     else:
-        return player.value
+        return player.value + 6
 
 
 def manipulate_game(opponent: Shape, player: Shape) -> Tuple[Shape, Shape]:
