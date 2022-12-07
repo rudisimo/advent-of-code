@@ -2,7 +2,7 @@ import importlib
 
 from glob import glob
 from pathlib import Path
-from typing import List
+from typing import List, Union
 
 import pytest
 
@@ -45,7 +45,7 @@ def solve_puzzle():
 
 @pytest.fixture(scope="session")
 def load_fixtures():
-    def wrapper(year: int, day: int, part: int, fixture_names: List[str]):
+    def wrapper(year: Union[str, int], day: Union[str, int], part: Union[str, int], fixture_names: List[str]):
         for fixture_name in fixture_names:
             fixture_glob = f"{Path().absolute()}/tests/fixtures/{year}/{day:02}-{fixture_name}.txt"
             fixture_files = glob(fixture_glob)
