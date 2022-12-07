@@ -22,10 +22,10 @@ python3 -m pip install --upgrade pip
 python3 -m pip install -e '.[test]'
 ```
 
-Check all answers:
+Check all answers for 2022:
 
 ```bash
-pytest -v
+pytest -Y 2022
 ```
 
 ## License
