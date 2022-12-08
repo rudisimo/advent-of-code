@@ -25,7 +25,7 @@ python3 -m pip install -e '.[test]'
 Check all answers for 2022:
 
 ```bash
-pytest -Y 2022
+pytest --cov -k 2022
 ```
 
 ## License

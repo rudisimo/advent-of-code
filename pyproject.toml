@@ -34,7 +34,7 @@ exclude = '''
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = ["--strict-config", "--strict-markers", "--no-cov-on-fail", "-rpfE", "-q"]
+addopts = ["--strict-config", "--strict-markers", "-rpfE", "-q"]
 testpaths = ["tests"]
 xfail_strict = true
 
