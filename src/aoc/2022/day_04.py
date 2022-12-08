@@ -5,9 +5,6 @@ class Section:
     def __init__(self, assignment: str) -> None:
         self.assignment = sorted(set(map(int, assignment.split("-"))))
 
-    def __repr__(self) -> str:
-        return f"{self.range}"
-
     @property
     def range(self) -> Set[int]:
         if len(self.assignment) < 2:
