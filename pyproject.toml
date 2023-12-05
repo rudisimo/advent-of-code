@@ -57,6 +57,7 @@ build = [
 ]
 
 [tool.coverage.report]
+fail_under = 90.0
 ignore_errors = true
 show_missing = true
 skip_covered = true
