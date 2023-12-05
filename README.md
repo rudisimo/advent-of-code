@@ -4,7 +4,7 @@
 
 [Advent of Code](https://adventofcode.com/) is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
 
-This project *WILL* contain all of my attempts at finishing the Advent of Code calendar each year.
+This project contains all of my attempts at finishing the Advent of Code calendar each year.
 
 ## Quickstart
 
@@ -18,14 +18,14 @@ source .venv/bin/activate
 Install dependencies:
 
 ```bash
-python3 -m pip install --upgrade pip
+python3 -m pip install -U pip setuptools
 python3 -m pip install -e '.[test]'
 ```
 
 Check all answers for 2022:
 
 ```bash
-pytest --cov -k 2022
+pytest --cov=. -k 2022
 ```
 
 ## License
