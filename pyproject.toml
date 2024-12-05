@@ -4,7 +4,7 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = 'aoc'
-dynamic = ['version']
+version = '2.0.0'
 description = 'Advent of Code programming puzzles by Rudy Puig.'
 license = { file = 'LICENSE.txt' }
 readme = 'README.md'
@@ -27,16 +27,12 @@ test = [
 
 [tool.setuptools]
 package-dir = {'' = 'src'}
-include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ['src']
-include = ['aoc*']
+include = ['aoc']
 exclude = ['docs', 'tests']
 namespaces = false
-
-[tool.setuptools.dynamic]
-version = {attr = 'aoc.__version__'}
 
 [tool.mypy]
 check_untyped_defs = true
