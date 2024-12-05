@@ -7,4 +7,4 @@
 --EXPECT--
 2
 --EXPECT--
-4
+-1

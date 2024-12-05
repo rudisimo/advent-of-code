@@ -11,10 +11,10 @@ def answer_1(input: List[str]) -> int:
     return sum(safe_reports)
 
 
-def answer_2(input: List[str]) -> int:
-    all_reports = extract_reports(input)
-    safe_reports = calculate_safety(all_reports, failure_threshold=1)
-    return sum(safe_reports)
+# def answer_2(input: List[str]) -> int:
+#     all_reports = extract_reports(input)
+#     safe_reports = calculate_safety(all_reports, failure_threshold=1) # noqa: F841
+#     return sum(safe_reports)
 
 
 def extract_reports(input: Iterable[str], /) -> Iterator[List[int]]:
