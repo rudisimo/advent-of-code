@@ -1,58 +1,129 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ['setuptools>=64', 'wheel']
+build-backend = 'setuptools.build_meta'
 
-[tool.autoflake]
-check = true
-expand-star-imports = true
-remove-all-unused-imports = true
+[project]
+name = 'aoc'
+dynamic = ['version']
+description = 'Advent of Code programming puzzles by Rudy Puig.'
+license = { file = 'LICENSE.txt' }
+readme = 'README.md'
+authors = [{ name = 'Rodolfo Puig', email = 'rodolfo@puig.io' }]
+requires-python = '~= 3.10'
+dependencies = []
 
-[tool.isort]
-profile = "black"
-line_length = 120
-lines_between_types = 1
-lines_after_imports = 2
-combine_as_imports = true
-force_single_line = true
-known_first_party = ["aoc", "tests"]
-single_line_exclusions = ["typing"]
+[project.optional-dependencies]
+dev = [
+  'ruff ~= 0.4.7',
+  'mypy ~= 1.10.0',
+]
+test = [
+  'pytest >= 6.0, != 8.1.*',
+  'pytest-checkdocs >= 2.4',
+  'pytest-cov',
+  'pytest-mypy',
+  'pytest-ruff',
+  'docutils',
+]
 
-[tool.black]
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = 'aoc.__version__'}
+
+[tool.setuptools.packages.find]
+where = ['src']
+exclude = ['docs', 'tests']
+namespaces = false
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_unused_ignores = true
+
+[tool.ruff]
 line-length = 120
-target-version = ["py310"]
-include = "\\.pyi?$"
-exclude = '''
-/(
-    \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.pytest_cache
-  | \.tox
-  | \.venv
-  | __pycache__
-  | _build
-  | build
-  | dist
-)/
-'''
+indent-width = 4
+target-version = 'py310'
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+ignore = []
+select = [
+    'B904',
+    'E4',
+    'E7',
+    'E9',
+    'F',
+    'PT009',
+    'TRY201',
+    'RUF200',
+]
+extend-select = ['I']
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ['ALL']
+unfixable = []
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = '^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$'
+
+[tool.ruff.lint.isort]
+case-sensitive = false
+combine-as-imports = false
+force-sort-within-sections = false
+# force-single-line = true
+known-first-party = ['aoc']
+known-third-party = []
+lines-after-imports = 2
+lines-between-types = 1
+# order-by-type = false
+no-lines-before = ['future', 'standard-library']
+single-line-exclusions = ['typing']
+section-order = [
+    'future',
+    'standard-library',
+    'third-party',
+    'first-party',
+    'local-folder',
+]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = 'double'
+# Like Black, indent with spaces, rather than tabs.
+indent-style = 'space'
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+# Like Black, automatically detect the appropriate line ending.
+line-ending = 'auto'
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+docstring-code-format = false
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+docstring-code-line-length = 'dynamic'
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-addopts = ["--strict-config", "--strict-markers", "-rpfE", "-q"]
-testpaths = ["tests"]
+minversion = '6.0'
+addopts = ['--strict-config', '--strict-markers', '-rpfE', '-q']
+testpaths = ['tests']
 xfail_strict = true
 
 [tool.coverage.run]
 branch = true
 parallel = true
-plugins = ["covdefaults"]
-source = ["aoc", "tests"]
+plugins = ['covdefaults']
+source = ['aoc', 'tests']
 
 [tool.coverage.paths]
 build = [
-  "src",
-  "*/site-packages",
+  'src',
+  '*/site-packages',
   '*\site-packages',
 ]
 
@@ -63,13 +134,9 @@ show_missing = true
 skip_covered = true
 skip_empty = true
 omit = [
-  "tests/*",
+  'tests/*',
 ]
 exclude_lines = []
 
 [tool.coverage.html]
 show_contexts = true
-
-[tool.pyright]
-include = ["src"]
-ignore = ["setup.py", "tests/*"]
