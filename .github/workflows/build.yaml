@@ -19,12 +19,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          architecture: x64
           cache: pip
-      - run: python3 --version
-      - run: pip install --quiet --upgrade pip setuptools
-      - run: pip install --editable '.[dev,test]'
-      - run: ruff check -q --diff --output-format=full .
-      - run: ruff format -q --diff --check .
+      - name: Install dependencies
+        run: |
+          python -m pip install --quiet --upgrade pip setuptools
+          python -m pip install --editable '.[dev,test]'
+
+      - name: Run linting
         continue-on-error: true
-      - run: pytest -vvv --cov --cov-context=test --cov-report=xml
+        run: |
+          python -m ruff check -q --diff --output-format=full .
+          python -m ruff format -q --diff --check .
+      - name: Run unit tests
+        run: |
+          python -m pytest -vvv --cov --cov-context=test --cov-report=xml
