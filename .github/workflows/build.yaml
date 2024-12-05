@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - 'main'
-  push:
-    branches:
-      - main
 
 jobs:
   build:
@@ -28,7 +25,8 @@ jobs:
           pip install .[dev,test]
       - name: Run linting
         run: |
-          python -m flake8 -v --config .flake8 --black-config pyproject.toml --show-source
+          python -m ruff check -q --diff --output-format=full .
+          python -m ruff format -q --diff --check .
         continue-on-error: true
       - name: Run unit tests
         run: |
