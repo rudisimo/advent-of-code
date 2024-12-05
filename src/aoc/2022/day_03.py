@@ -1,10 +1,9 @@
 from __future__ import annotations
-
 from string import ascii_letters
 from typing import List, Set, Tuple
 
 
-PRIORITY_TABLE = {l: p for p, l in enumerate(ascii_letters, 1)}
+PRIORITY_TABLE = {c: i for i, c in enumerate(ascii_letters, 1)}
 
 
 class RuckSack:

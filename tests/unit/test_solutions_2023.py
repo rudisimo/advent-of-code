@@ -22,6 +22,6 @@ def parametrize_fixtures(year, components) -> Iterator[ParameterSet]:
 def test_solve_puzzle_answers(
     year: str, day: int, part: int, solver: int, fixture: str, load_fixtures, solve_puzzle
 ) -> None:
-    for (fixture_data, expected_output) in load_fixtures(year, day, part, [fixture]):
+    for fixture_data, expected_output in load_fixtures(year, day, part, [fixture]):
         output = solve_puzzle(year, day, solver, fixture_data)
         assert output == expected_output
