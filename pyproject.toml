@@ -22,6 +22,7 @@ test = [
   'pytest-cov',
   'pytest-mypy',
   'pytest-ruff',
+  'covdefaults',
   'docutils',
 ]
 
