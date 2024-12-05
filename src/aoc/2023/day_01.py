@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from string import digits
 from typing import List
 

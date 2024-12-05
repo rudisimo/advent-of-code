@@ -54,7 +54,7 @@ def load_fixtures():
                     with open(fixture) as fp:
                         samples = fp.read().split("--EXPECT--\n")
                         yield (samples[0].splitlines(), samples[part].strip())
-                except (IndexError):
+                except IndexError:
                     yield ([], None)
             if not fixture_files:
                 pytest.skip(f"fixture not found: {fixture_glob}")

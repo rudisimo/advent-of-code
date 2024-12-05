@@ -18,6 +18,6 @@ def parametrize_fixtures(year, dates, fixtures) -> Iterator[ParameterSet]:
 @pytest.mark.year(FIXTURE_YEAR)
 @pytest.mark.parametrize("year,day,part,fixtures", parametrize_fixtures(FIXTURE_YEAR, FIXTURE_DATES, FIXTURE_NAMES))
 def test_solve_puzzle_answers(year: str, day: int, part: int, fixtures: List[str], load_fixtures, solve_puzzle) -> None:
-    for (fixture_data, expected_output) in load_fixtures(year, day, part, fixtures):
+    for fixture_data, expected_output in load_fixtures(year, day, part, fixtures):
         output = solve_puzzle(year, day, part, fixture_data)
         assert output == expected_output

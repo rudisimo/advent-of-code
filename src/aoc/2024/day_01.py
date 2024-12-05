@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from functools import reduce
-from operator import countOf
-from operator import mul
-from operator import sub
+from operator import countOf, mul, sub
 from typing import Iterable, Iterator, List
 
 
