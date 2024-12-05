@@ -22,9 +22,9 @@ jobs:
           architecture: x64
           cache: pip
       - run: python3 --version
-      - run: python3 -m pip install --quiet --upgrade pip setuptools
-      - run: python3 -m pip install --editable '.[dev,test]'
-      - run: python3 -m ruff check -q --diff --output-format=full .
-      - run: python3 -m ruff format -q --diff --check .
+      - run: pip install --quiet --upgrade pip setuptools
+      - run: pip install --editable '.[dev,test]'
+      - run: ruff check -q --diff --output-format=full .
+      - run: ruff format -q --diff --check .
         continue-on-error: true
-      - run: python3 -m pytest -vvv --cov --cov-context=test --cov-report=xml
+      - run: pytest -vvv --cov --cov-context=test --cov-report=xml

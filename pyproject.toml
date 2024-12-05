@@ -10,7 +10,6 @@ license = { file = 'LICENSE.txt' }
 readme = 'README.md'
 authors = [{ name = 'Rodolfo Puig', email = 'rodolfo@puig.io' }]
 requires-python = '~= 3.10'
-dependencies = []
 
 [project.optional-dependencies]
 dev = [
