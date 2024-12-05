@@ -13,19 +13,14 @@ Create a virtual environment:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
 python3 -m pip install -U pip setuptools
 python3 -m pip install -e '.[test]'
 ```
 
-Check all answers for 2022:
+Check all answers for 2024:
 
 ```bash
-pytest --cov=. -k 2022
+python3 -m pytest --cov=. -k 2024
 ```
 
 ## License
